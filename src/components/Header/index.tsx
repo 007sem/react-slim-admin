@@ -1,16 +1,10 @@
 import "./header.less";
-import { Breadcrumb } from "antd";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { useState } from "react";
+
+import CollapseIcon from "./CollapseIcon"
+import BreadCrumb from "./BreadCrumb";
 
 function Header() {
-    const iconSize = "1.2rem";
 
-	const [collapsed, setCollapsed] = useState(false);
-
-	function handleCollapse() {
-		setCollapsed(!collapsed);
-	}
 
 	
 
@@ -21,20 +15,8 @@ function Header() {
 				height: "4rem",
 			}}
 		>
-			<div className="collaps-icon">
-				{collapsed ? (
-					<MenuFoldOutlined
-						style={{ fontSize: iconSize }}
-						onClick={() => handleCollapse()}
-					/>
-				) : (
-					<MenuUnfoldOutlined
-						style={{ fontSize: iconSize }}
-						onClick={() => handleCollapse()}
-					/>
-				)}
-			</div>
-			<div className="bread-crumb"></div>
+			<CollapseIcon />
+			<BreadCrumb />
 		</div>
 	);
 }

@@ -1,5 +1,5 @@
-import { MenuProps, Menu, Layout, ConfigProvider } from "antd";
-import React, { useEffect, useState } from "react";
+import {  Menu, Layout, ConfigProvider } from "antd";
+import  {  useState } from "react";
 import routes from "@/route/routes";
 import { useNavigate } from "react-router-dom";
 import logo from "@/assets/react.svg";
