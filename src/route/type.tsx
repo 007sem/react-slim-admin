@@ -1,18 +1,13 @@
 import { ReactNode } from 'react'
 
-export interface NestedRoute {
-  path: string
-  routes?: Array<NestedRoute>
-}
-
-type MenuType = 'menu' | 'subMenu'
-
-export interface MenuRoute extends NestedRoute {
-  path: string
-  name?: string
-  routes?: MenuRoute[] | undefined
-  hideChildrenInMenu?: boolean
-  hideInMenu?: boolean
-  icon?: ReactNode
-  type?: MenuType
+export interface RouteType {
+	path: string;
+	element?: ReactNode;
+	icon?: ReactNode;
+  name?: string,
+	label?: ReactNode;
+	key?: string;
+	index?: "true" | undefined; // 解决react-dom 不能识别 bool值
+	type?: string;
+	children?: RouteType[];
 }

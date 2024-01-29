@@ -1,89 +1,88 @@
-import {  Menu, Layout, ConfigProvider } from "antd";
-import  {  useState } from "react";
+import { Menu, Layout, ConfigProvider } from "antd";
+import { useState, useEffect } from "react";
 import routes from "@/route/routes";
-import { useNavigate } from "react-router-dom";
+import { RouteType } from "@/route/type";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import type { AppDispatch, RootState, MenuListItem } from "@/store";
+import { useCommonStore } from "@/hooks/useCommonStore";
+import { setMenuList, setOpenKeys, setSelectedKeys } from "@/store/menu";
+import { PathFindName, setTitle } from "@/util/index";
+
 import logo from "@/assets/react.svg";
 import "./menu.less";
 
-type MenuTree = {
-	path: string;
-	label: string;
-	father?: string;
-	children?: MenuTree[];
-};
+function splitKeysArray(arr: string[], index: number): [string[], string[]] {
+	const arr1 = arr.slice(1, index);
+	const arr2 = arr.slice(index);
 
-function flattenTree(tree: any, key?: string) {
-	let arr: any[] = [];
-
-	tree.forEach((item: any) => {
-		if (key) item.father = key;
-		if (item.children) {
-			arr.push(item);
-			arr.push(...flattenTree(item.children, item.path));
-		} else {
-			arr.push(item);
-		}
-	});
-	return arr;
+	return [arr1, arr2];
 }
 
-function creatTree(arr: MenuTree[]) {
-	let tree: any[] = [];
-	arr.forEach((item: any) => {
-		if (!item.father) {
-			tree.push(item);
-		}
-	});
-	arr.forEach((item: any) => {
-		// 找到父节点
-		if (item.father) {
-			tree.forEach(
-				(node: any) =>
-					node.key === item.father && node.children.push(item)
-			);
-		}
-	});
-	return tree;
-}
-
-// TODO: 优化导航列表算法
 function MenuComponent() {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const dispatch: AppDispatch = useDispatch();
+	const { isCollapsed, menuList } = useCommonStore();
 
-	function creatSubNode(label: string, key: string, icon: any) {
-		return {
-			label: <div style={{ width: "2rem" }}>{label}</div>,
-			key,
-			icon,
-			children: [],
-		};
-	}
-	function creatMenuItem(label: string, key: string, father: string, icon: any) {
-		return {
-			label: <div style={{ width: "2rem" }}>{label}</div>,
-			key,
-            icon,
-			father,
-		};
-	}
-    
-	const routesData = routes.find((item) => item.path === "/")?.children;
-	let items: any[] = flattenTree(routesData);
-	items = items.map((item: any) => {
-		if (item.type === "sub") {
-			return creatSubNode(item.label, item.path, item.icon);
+	let pathArr = location.pathname.split("/");
+
+	let _openKeys: string[] = [],
+		_selectKeys: string[] = [];
+	// let [_openKeys, _selectKeys] = splitKeysArray(
+	// 	pathArr,
+	// 	pathArr.length - 1
+	// );
+	// console.log(_openKeys).
+	if (pathArr.length <= 2) {
+		if (pathArr[1] === "") {
+			_selectKeys = ["/"];
 		} else {
-			return creatMenuItem(item.label, item.path, item.father,item.icon);
+			_selectKeys = [pathArr[1]];
 		}
-	});
-	items = creatTree(items);
+	} else {
+		[_openKeys, _selectKeys] = splitKeysArray(pathArr, pathArr.length - 1);
+	}
 
-	const handleClick = (e: { keyPath: string[] }) => {
+	const [selectedKeys] = useState<string[]>(_selectKeys);
+	const [openKeys] = useState<string[]>(_openKeys);
+
+	// useEffect(()=>{
+	// 	console.log("layout")
+	// 	console.log("location", location.pathname);
+
+	// },[])
+
+	useEffect(() => {
+		dispatch(setMenuList(MenuList));
+	}, []);
+
+	let MenuList: MenuListItem[] = [];
+
+	function GetMenuItems(tree: RouteType[]): any[] {
+		tree.forEach((item: RouteType) => {
+			MenuList.push({
+				key: item.path,
+				path: item.path,
+				name: item.name!,
+			});
+			item.key = item.path;
+			item.label = <div style={{ width: "2rem" }}>{item.name}</div>;
+			if (item.children && item.children.length > 0) {
+				GetMenuItems(item.children);
+			}
+		});
+		return tree;
+	}
+
+	const MenuData = routes.find((item) => item.path === "/")?.children!;
+	let items: any[] = GetMenuItems(MenuData);
+
+	const handleClick = (e: { keyPath: string[]; key: string }) => {
 		let path = e.keyPath.reverse().join("/");
+		setTitle(PathFindName(menuList, e.key));
 		navigate(path);
 	};
-
-	const [collaps, setCollaps] = useState(false);
 
 	return (
 		<ConfigProvider
@@ -91,32 +90,27 @@ function MenuComponent() {
 				components: {
 					Menu: {
 						/* 这里是你的组件 token */
-                        itemHoverColor: '#fff',
-                        itemHoverBg: "#222",
-                        itemSelectedBg: "#333",
-                        itemSelectedColor: "#fff",
-                        popupBg: "#181818",
-                        itemColor:"#888"
+						itemHoverColor: "#fff",
+						itemHoverBg: "#222",
+						itemSelectedBg: "#333",
+						itemSelectedColor: "#fff",
+						popupBg: "#181818",
+						itemColor: "#888",
 					},
 				},
 			}}
 		>
 			<Layout.Sider
-				collapsed={collaps}
+				collapsed={isCollapsed}
 				style={{
 					height: "100vh",
 					padding: "1rem",
 					backgroundColor: "#181818",
-                    
 				}}
 			>
 				<div className="aside">
 					<div className="logo">
-						<img
-							src={logo}
-							alt="logo"
-							onClick={() => setCollaps(!collaps)}
-						/>
+						<img src={logo} alt="logo" />
 					</div>
 					<Menu
 						style={{
@@ -124,7 +118,8 @@ function MenuComponent() {
 						}}
 						onClick={handleClick}
 						mode="inline"
-						defaultSelectedKeys={["/"]}
+						defaultOpenKeys={openKeys}
+						defaultSelectedKeys={selectedKeys}
 						items={items}
 					></Menu>
 				</div>
