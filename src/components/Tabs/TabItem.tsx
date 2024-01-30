@@ -43,8 +43,7 @@ function TabItem ({
     function CloseClick(event: MouseEvent){
         event.stopPropagation();
         let index =  tabList.findIndex((item) => item.path === path)
-        navigate(tabList[index-1].path)
-        console.log("index",index)
+        if( active ) navigate(tabList[index-1].path)
 
         // 删除 tab
         dispatch(deleteTab(name))

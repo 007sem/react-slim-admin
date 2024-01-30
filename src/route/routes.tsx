@@ -1,4 +1,4 @@
-import { HomeOutlined, UserOutlined } from "@ant-design/icons";
+import { HomeOutlined, UserOutlined, FundOutlined } from "@ant-design/icons";
 
 import LayOut from "@/components/Layout/LayOut";
 
@@ -11,7 +11,6 @@ import ManegeGoods from "@/views/manege/ManegeGoods";
 import ManegeUsers from "@/views/manege/ManegeUsers";
 
 import { RouteType } from "./type";
-
 
 export const routes: RouteType[] = [
 	{
@@ -34,6 +33,7 @@ export const routes: RouteType[] = [
 				path: "charts",
 				name: "图表",
 				element: <Charts />,
+				icon: <FundOutlined />,
 			},
 			{
 				path: "manege",
@@ -51,6 +51,42 @@ export const routes: RouteType[] = [
 						name: "用户管理",
 						element: <ManegeUsers />,
 					},
+					{
+						path: "manege2",
+						name: "管理2",
+						icon: <UserOutlined />,
+						type: "sub",
+						children: [
+							{
+								path: "manege_goods2",
+								name: "商品管理2",
+								element: <ManegeGoods />,
+							},
+							{
+								path: "manege_users2",
+								name: "用户管理2",
+								element: <ManegeUsers />,
+							},
+						],
+					},
+				],
+			},
+			{
+				path: "manege3",
+				name: "管理3",
+				icon: <UserOutlined />,
+				type: "sub",
+				children: [
+					{
+						path: "manege_goods3",
+						name: "商品管理3",
+						element: <ManegeGoods />,
+					},
+					{
+						path: "manege_users3",
+						name: "用户管理3",
+						element: <ManegeUsers />,
+					},
 				],
 			},
 		],
@@ -63,16 +99,15 @@ export const routes: RouteType[] = [
 ];
 // 将路由扁平化
 const flatRoutes = (routes: RouteType[]) => {
-	let res: RouteType[] = []
-	routes.forEach(item => {
-		res.push(item)
+	let res: RouteType[] = [];
+	routes.forEach((item) => {
+		res.push(item);
 		if (item.children && item.children.length > 0) {
-			res.push(...flatRoutes(item.children))
+			res.push(...flatRoutes(item.children));
 		}
-	})
+	});
 
-	return res
-}
+	return res;
+};
 
-export const flatRoutesList = flatRoutes(routes)
-
+export const flatRoutesList = flatRoutes(routes);

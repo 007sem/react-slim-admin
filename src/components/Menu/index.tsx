@@ -18,32 +18,53 @@ function splitKeysArray(arr: string[], index: number): [string[], string[]] {
 	return [arr1, arr2];
 }
 
+// 数组 arr1 是否包含 arr2
+function isArrInclude (arr1: string[], arr2: string[]): boolean{
+	return arr1.every(item => arr2.includes(item));
+}
+
+
 function MenuComponent() {
+	console.log("menu show");
+
 	const navigate = useNavigate();
-	const location = useLocation();
+	const { pathname } = useLocation();
 	const dispatch: AppDispatch = useDispatch();
 	const { isCollapsed } = useCommonStore();
 
-	let pathArr = location.pathname.split("/");
+	let pathArr = pathname.split("/");
 
-	let _openKeys: string[] = [],
-		_selectKeys: string[] = [];
-	if (pathArr.length <= 2) {
-		if (pathArr[1] === "") {
-			_selectKeys = ["/"];
-		} else {
-			_selectKeys = [pathArr[1]];
-		}
-	} else {
-		[_openKeys, _selectKeys] = splitKeysArray(pathArr, pathArr.length - 1);
-	}
-
-	const [selectedKeys] = useState<string[]>(_selectKeys);
-	const [openKeys] = useState<string[]>(_openKeys);
+	const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+	const [openKeys, setOpenKeys] = useState<string[]>([]);
 
 	useEffect(() => {
+		let _openKeys: string[] = [],
+			_selectKeys: string[] = [];
+		if (pathArr.length <= 2) {
+			if (pathArr[1] === "") {
+				_selectKeys = ["/"];
+			} else {
+				_selectKeys = [pathArr[1]];
+			}
+		} else {
+			[_openKeys, _selectKeys] = splitKeysArray(
+				pathArr,
+				pathArr.length - 1
+			);
+		}
+		
+		if(isArrInclude(openKeys, _openKeys)){
+			console.log(openKeys, _openKeys);
+			setOpenKeys(_openKeys);
+		}
+		setSelectedKeys(_selectKeys);
 		dispatch(setMenuList(MenuList));
-	}, []);
+	}, [pathname]);
+
+
+	useEffect(()=>{
+		setOpenKeys([]);
+	},[isCollapsed])
 
 	let MenuList: MenuListItem[] = [];
 
@@ -67,9 +88,16 @@ function MenuComponent() {
 	let items: any[] = GetMenuItems(MenuData);
 
 	const handleClick = (e: { keyPath: string[]; key: string }) => {
+		console.log("menu click");
 		let path = e.keyPath.reverse().join("/");
 		navigate(path);
 	};
+
+	// TODO 修复collapse 变化 openkeys bug
+	function onOpenChange(e: string[]){
+		console.log("onOpenChange", e);
+		setOpenKeys(e)
+	}
 
 	return (
 		<ConfigProvider
@@ -105,8 +133,9 @@ function MenuComponent() {
 						}}
 						onClick={handleClick}
 						mode="inline"
-						defaultOpenKeys={openKeys}
-						defaultSelectedKeys={selectedKeys}
+						openKeys={openKeys}
+						selectedKeys={selectedKeys}
+						onOpenChange={onOpenChange}
 						items={items}
 					></Menu>
 				</div>

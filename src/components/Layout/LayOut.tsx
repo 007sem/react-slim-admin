@@ -26,7 +26,6 @@ function LayOut() {
 
 		// 修改 tab 栏
 		if (path !== "/") {
-			console.log("tabList", tabList);
 			if (tabList.findIndex((item) => item.path === pathname) === -1) {
 				dispatch(
 					addTabItem({

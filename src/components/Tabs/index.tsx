@@ -10,7 +10,6 @@ function NavComponent() {
 
 	// 监听tabList变化
 	useEffect(()=>{
-		console.log(tabList)
 		_setTabList(tabList);
 	},[tabList])
 
