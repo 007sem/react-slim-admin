@@ -1,17 +1,13 @@
 import { CloseOutlined } from "@ant-design/icons"
 
+import { TabItemType } from './type'
 
-interface TabItemProps {
-    name:string,
-    path:string,
-    active:string
-}
 
 function TabItem ({
     name,
     path,
     active
-}: TabItemProps) {
+}: TabItemType) {
 
     function handleClick(){
         console.log(path)
@@ -20,9 +16,13 @@ function TabItem ({
     return (
         <div className={ active ? "active tab-item" : 'tab-item '} onClick={handleClick}>
             <span className="name">{name}</span>
-            <span className="close-icon">
-                <CloseOutlined />
-            </span>
+            {
+                path !== "/" ? (
+                    <span className="close-icon">
+                        <CloseOutlined />
+                    </span>
+                ) : ""
+            }
         </div>
     )
 };

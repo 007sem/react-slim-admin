@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import menuReducer from "./menu";
+import tabSlice from "./Tab"
 
 
 
 export const store = configureStore({
 	reducer: {
         menu: menuReducer,
+        tab: tabSlice
     },
 });
 

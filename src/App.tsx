@@ -5,9 +5,14 @@ import { RouteType } from "./route/type";
 
 import { KeepAlive } from "react-activation";
 
+import { useLocation } from "react-router-dom";
+
 export const MenuContext = createContext<any>([]);
 
 function App() {
+
+	console.log("App")
+
 	// 不需要keep alive 的路由
 	const aliveIgnoreArr = ["login", "*"];
 	function wrapKeepAlive(routes: RouteType[]): RouteType[] {
@@ -22,7 +27,7 @@ function App() {
 					...route,
 					alive: true,
 					element: (
-						<KeepAlive cacheKey={route.name} name={route.name}>
+						<KeepAlive cacheKey={route.path} name={route.name}>
 							{route.element}
 						</KeepAlive>
 					),

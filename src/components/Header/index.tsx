@@ -2,9 +2,14 @@ import "./header.less";
 
 import CollapseIcon from "./CollapseIcon";
 import BreadCrumb from "./BreadCrumb";
-import Nav from "@/components/Nav";
+import Tabs from "@/components/Tabs";
+
+
+
 
 function Header() {
+	
+
 	return (
 		<div className="header">
 			<div
@@ -17,7 +22,7 @@ function Header() {
 				<BreadCrumb />
 			</div>
 			<div className="header-bottom">
-				<Nav />
+				<Tabs />
 			</div>
 		</div>
 	);

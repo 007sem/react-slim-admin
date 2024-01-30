@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import type { AppDispatch, MenuListItem } from "@/store";
 import { useCommonStore } from "@/hooks/useCommonStore";
 import { setMenuList } from "@/store/menu";
-import { PathFindName, setTitle } from "@/util/index";
 
 import logo from "@/assets/react.svg";
 import "./menu.less";
@@ -69,7 +68,6 @@ function MenuComponent() {
 
 	const handleClick = (e: { keyPath: string[]; key: string }) => {
 		let path = e.keyPath.reverse().join("/");
-		setTitle(PathFindName(menuList, e.key));
 		navigate(path);
 	};
 

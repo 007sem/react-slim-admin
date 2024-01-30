@@ -61,4 +61,18 @@ export const routes: RouteType[] = [
 		element: <NotFound />,
 	},
 ];
+// 将路由扁平化
+const flatRoutes = (routes: RouteType[]) => {
+	let res: RouteType[] = []
+	routes.forEach(item => {
+		res.push(item)
+		if (item.children && item.children.length > 0) {
+			res.push(...flatRoutes(item.children))
+		}
+	})
+
+	return res
+}
+
+export const flatRoutesList = flatRoutes(routes)
 

@@ -3,9 +3,24 @@ import { Outlet } from "react-router-dom";
 
 import MenuComponent from "@/components/Menu";
 import Header from "@/components/Header";
-import { KeepAlive } from "react-activation";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { PathFindName, setTitle } from "@/util";
+import { useCommonStore } from "@/hooks/useCommonStore"
+
 
 function LayOut() {
+	const location = useLocation();
+	
+	useEffect(() => {
+		let pathArr = location.pathname.split('/')
+		let path = pathArr[pathArr.length-1]
+		if (path === '') {
+			path = '/'
+		}
+		setTitle(PathFindName( path));
+	}, [location])
+
 	return (
 		<Flex gap="middle" wrap="wrap">
 			<Layout>

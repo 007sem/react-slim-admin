@@ -18,15 +18,13 @@ function BreadCrumb() {
 		if (arr.length == 1 && arr[0] == "") {
 			return res;
 		} else if (arr.length == 1) {
-			return [{ title: PathFindName(menuList, arr[0]) }];
+			return [{ title: PathFindName(arr[0]) }];
 		} else {
 			return arr.map((item) => {
-				return { title: PathFindName(menuList, item) };
+				return { title: PathFindName(item) };
 			});
 		}
 	}
-
-	console.log("bread crumb show");
 
 	return <Breadcrumb items={[{ title: "首页" }, ...getBreadcrumb()]} />;
 }
