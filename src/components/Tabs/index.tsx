@@ -1,23 +1,18 @@
 import TabItem from "./TabItem";
+import { useEffect, useState } from "react";
+import { useCommonStore } from "@/hooks/useCommonStore";
 
 import "./nav.less";
 
-import { useAliveController } from "react-activation";
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-
-import { useDispatch } from "react-redux";
-import { setTabList } from "@/store/Tab";
-
-import type { AppDispatch } from "@/store";
-import type { TabItemType } from "./type";
-import { useCommonStore } from "@/hooks/useCommonStore"
-
 function NavComponent() {
-	const { tabList } = useCommonStore()
+	const { tabList } = useCommonStore();
 	const [_tabList, _setTabList] = useState(tabList);
 
-
+	// 监听tabList变化
+	useEffect(()=>{
+		console.log(tabList)
+		_setTabList(tabList);
+	},[tabList])
 
 	return (
 		<div className="tab-bar">

@@ -28,6 +28,6 @@ const tabSlice = createSlice({
 	},
 });
 
-export const { setTabList, addTabItem } = tabSlice.actions;
+export const { setTabList, addTabItem, deleteTab } = tabSlice.actions;
 
 export default tabSlice.reducer;

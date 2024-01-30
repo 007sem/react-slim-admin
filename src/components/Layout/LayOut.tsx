@@ -6,20 +6,38 @@ import Header from "@/components/Header";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { PathFindName, setTitle } from "@/util";
-import { useCommonStore } from "@/hooks/useCommonStore"
-
+import { useCommonStore } from "@/hooks/useCommonStore";
+import { addTabItem } from "@/store/Tab";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/store";
 
 function LayOut() {
-	const location = useLocation();
-	
+	const { pathname } = useLocation();
+	const { tabList } = useCommonStore();
+	const dispatch: AppDispatch = useDispatch();
+
 	useEffect(() => {
-		let pathArr = location.pathname.split('/')
-		let path = pathArr[pathArr.length-1]
-		if (path === '') {
-			path = '/'
+		//  修改html title
+		let pathArr = pathname.split("/");
+		let path = pathArr[pathArr.length - 1];
+		if (path === "") path = "/";
+		let title = PathFindName(path);
+		setTitle(title);
+
+		// 修改 tab 栏
+		if (path !== "/") {
+			console.log("tabList", tabList);
+			if (tabList.findIndex((item) => item.path === pathname) === -1) {
+				dispatch(
+					addTabItem({
+						path: pathname,
+						name: title,
+						active: "false",
+					})
+				);
+			}
 		}
-		setTitle(PathFindName( path));
-	}, [location])
+	}, [pathname]);
 
 	return (
 		<Flex gap="middle" wrap="wrap">

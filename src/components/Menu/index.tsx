@@ -1,5 +1,5 @@
 import { Menu, Layout, ConfigProvider } from "antd";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { routes } from "@/route/routes";
 import { RouteType } from "@/route/type";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -22,7 +22,7 @@ function MenuComponent() {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const dispatch: AppDispatch = useDispatch();
-	const { isCollapsed, menuList } = useCommonStore();
+	const { isCollapsed } = useCommonStore();
 
 	let pathArr = location.pathname.split("/");
 

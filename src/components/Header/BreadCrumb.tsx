@@ -1,6 +1,5 @@
 import { Breadcrumb } from "antd";
 import { useLocation } from "react-router-dom";
-import { useCommonStore } from "@/hooks/useCommonStore";
 
 import { PathFindName } from "@/util/index";
 
@@ -11,7 +10,6 @@ interface BreadcrumbItem {
 function BreadCrumb() {
 	function getBreadcrumb() {
 		const location = useLocation();
-		const { menuList } = useCommonStore();
 		let res: BreadcrumbItem[] = [];
 		let arr = location.pathname.split("/");
 		arr.shift();
