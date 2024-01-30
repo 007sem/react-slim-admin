@@ -1,7 +1,6 @@
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 
 import LayOut from "@/components/Layout/LayOut";
-import { ReactNode } from "react";
 
 import Home from "@/views/Home";
 import Login from "@/views/Login";
@@ -11,14 +10,13 @@ import NotFound from "@/views/NotFound";
 import ManegeGoods from "@/views/manege/ManegeGoods";
 import ManegeUsers from "@/views/manege/ManegeUsers";
 
-
-import { RouteType } from "./type"
-
+import { RouteType } from "./type";
 
 
-const routes: RouteType[] = [
+export const routes: RouteType[] = [
 	{
 		path: "login",
+		name: "登录",
 		element: <Login />,
 	},
 	{
@@ -35,7 +33,6 @@ const routes: RouteType[] = [
 			{
 				path: "charts",
 				name: "图表",
-				icon: <HomeOutlined />,
 				element: <Charts />,
 			},
 			{
@@ -54,15 +51,14 @@ const routes: RouteType[] = [
 						name: "用户管理",
 						element: <ManegeUsers />,
 					},
-                    
 				],
 			},
 		],
 	},
 	{
 		path: "*",
+		name: "404",
 		element: <NotFound />,
 	},
 ];
 
-export default routes;

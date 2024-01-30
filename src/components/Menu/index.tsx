@@ -1,12 +1,12 @@
 import { Menu, Layout, ConfigProvider } from "antd";
-import { useState, useEffect } from "react";
-import routes from "@/route/routes";
+import { useState, useEffect, useContext } from "react";
+import { routes } from "@/route/routes";
 import { RouteType } from "@/route/type";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import type { AppDispatch, RootState, MenuListItem } from "@/store";
+import type { AppDispatch, MenuListItem } from "@/store";
 import { useCommonStore } from "@/hooks/useCommonStore";
-import { setMenuList, setOpenKeys, setSelectedKeys } from "@/store/menu";
+import { setMenuList } from "@/store/menu";
 import { PathFindName, setTitle } from "@/util/index";
 
 import logo from "@/assets/react.svg";
@@ -29,11 +29,6 @@ function MenuComponent() {
 
 	let _openKeys: string[] = [],
 		_selectKeys: string[] = [];
-	// let [_openKeys, _selectKeys] = splitKeysArray(
-	// 	pathArr,
-	// 	pathArr.length - 1
-	// );
-	// console.log(_openKeys).
 	if (pathArr.length <= 2) {
 		if (pathArr[1] === "") {
 			_selectKeys = ["/"];
@@ -46,12 +41,6 @@ function MenuComponent() {
 
 	const [selectedKeys] = useState<string[]>(_selectKeys);
 	const [openKeys] = useState<string[]>(_openKeys);
-
-	// useEffect(()=>{
-	// 	console.log("layout")
-	// 	console.log("location", location.pathname);
-
-	// },[])
 
 	useEffect(() => {
 		dispatch(setMenuList(MenuList));

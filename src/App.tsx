@@ -1,20 +1,51 @@
-// import { useState } from 'react'
-import routes from "@/route/routes.jsx"
-import { createHashRouter, RouterProvider} from "react-router-dom"
-// import { createContext } from "react"
+import { routes } from "@/route/routes.jsx";
+import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createContext } from "react";
+import { RouteType } from "./route/type";
 
-import './App.less'
+import { KeepAlive } from "react-activation";
+
+// 不需要keep alive 的路由
+const aliveIgnoreArr = ["login", "*"];
+
+export const MenuContext = createContext<any>([]);
 
 function App() {
+	function wrapKeepAlive(routes: RouteType[]): RouteType[] {
+		let res: RouteType[] = [];
+		routes.forEach((route) => {
+			if (
+				route.element &&
+				route.name &&
+				!aliveIgnoreArr.includes(route.path)
+			) {
+				console.log(route.name);
+				res.push({
+					...route,
+					alive: true,
+					element: (
+						<KeepAlive cacheKey={route.name} name={route.name}>
+							{route.element}
+						</KeepAlive>
+					),
+				});
+			}
 
-  
+			if (route.children && route.children.length > 0) {
+				res.push({ ...route, children: wrapKeepAlive(route.children) });
+			}
+		});
 
-  const router = createHashRouter(routes)
+		return res;
+	}
 
+	const aliveRoutes = wrapKeepAlive(routes);
+	console.log(aliveRoutes);
 
-  return (
-      <RouterProvider router={router} />
-  )
+	// @ts-ignore
+	const router = createHashRouter(aliveRoutes);
+
+	return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;

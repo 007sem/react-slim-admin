@@ -1,18 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.less'
+import ReactDOM from "react-dom";
+import App from "./App.tsx";
+import { AliveScope } from "react-activation";
 
 // 状态管理
-import { Provider } from 'react-redux';
-import { store } from './store';
+import { Provider } from "react-redux";
+import { store } from "./store";
 
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <App />
-  </Provider>
-    
-  // </React.StrictMode>,
-)
+ReactDOM.render(
+	<Provider store={store}>
+    <AliveScope>
+      <App />
+    </AliveScope>
+	</Provider>,
+	document.getElementById("root")!
+);
