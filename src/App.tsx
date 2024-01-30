@@ -5,12 +5,11 @@ import { RouteType } from "./route/type";
 
 import { KeepAlive } from "react-activation";
 
-// 不需要keep alive 的路由
-const aliveIgnoreArr = ["login", "*"];
-
 export const MenuContext = createContext<any>([]);
 
 function App() {
+	// 不需要keep alive 的路由
+	const aliveIgnoreArr = ["login", "*"];
 	function wrapKeepAlive(routes: RouteType[]): RouteType[] {
 		let res: RouteType[] = [];
 		routes.forEach((route) => {
@@ -19,7 +18,6 @@ function App() {
 				route.name &&
 				!aliveIgnoreArr.includes(route.path)
 			) {
-				console.log(route.name);
 				res.push({
 					...route,
 					alive: true,
@@ -38,9 +36,7 @@ function App() {
 
 		return res;
 	}
-
 	const aliveRoutes = wrapKeepAlive(routes);
-	console.log(aliveRoutes);
 
 	// @ts-ignore
 	const router = createHashRouter(aliveRoutes);

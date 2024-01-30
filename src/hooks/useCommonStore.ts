@@ -1,6 +1,8 @@
 import type { RootState } from "@/store";
 import { useSelector } from "react-redux";
 
+
+// 常用的状态
 export const useCommonStore = () => {
 	const menuList = useSelector((state: RootState) => state.menu.menuList);
 	const isCollapsed = useSelector((state: RootState) => state.menu.isCollapsed);
