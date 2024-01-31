@@ -14,7 +14,7 @@ import { RouteType } from "./type";
 
 export const routes: RouteType[] = [
 	{
-		path: "login",
+		path: "/login",
 		name: "登录",
 		element: <Login />,
 	},

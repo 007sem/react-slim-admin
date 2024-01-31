@@ -8,6 +8,8 @@ import type { AppDispatch, MenuListItem } from "@/store";
 import { useCommonStore } from "@/hooks/useCommonStore";
 import { setMenuList } from "@/store/menu";
 import { changeActive } from "@/store/Tab";
+import { useLocationHooks } from "@/hooks/useLoaction";
+import { isArrInclude } from "@/util"
 
 import logo from "@/assets/react.svg";
 import "./menu.less";
@@ -19,10 +21,6 @@ function splitKeysArray(arr: string[], index: number): [string[], string[]] {
 	return [arr1, arr2];
 }
 
-// 数组 arr1 是否包含 arr2
-function isArrInclude (arr1: string[], arr2: string[]): boolean{
-	return arr1.every(item => arr2.includes(item));
-}
 
 
 function MenuComponent() {
@@ -32,6 +30,9 @@ function MenuComponent() {
 	const { pathname } = useLocation();
 	const dispatch: AppDispatch = useDispatch();
 	const { isCollapsed } = useCommonStore();
+
+	const { fullName, currentName } = useLocationHooks();
+	console.log("fullname", fullName, currentName);
 
 	let pathArr = pathname.split("/");
 
@@ -54,14 +55,13 @@ function MenuComponent() {
 			);
 		}
 		// TODO 修复collapse 变化 openkeys bu
-		if(isArrInclude(openKeys, _openKeys)){
-			if(!isCollapsed)setOpenKeys(_openKeys);
+		if (isArrInclude(openKeys, _openKeys)) {
+			if (!isCollapsed) setOpenKeys(_openKeys);
 		}
 		setSelectedKeys(_selectKeys);
 		dispatch(setMenuList(MenuList));
-		dispatch(changeActive(pathname))
+		dispatch(changeActive(pathname));
 	}, [pathname]);
-
 
 	// useEffect(()=>{
 	// 	setOpenKeys([]);
@@ -89,13 +89,12 @@ function MenuComponent() {
 	let items: any[] = GetMenuItems(MenuData);
 
 	const handleClick = (e: { keyPath: string[]; key: string }) => {
-
 		let path = e.keyPath.reverse().join("/");
 		navigate(path);
 	};
 
-	function onOpenChange(e: string[]){
-		setOpenKeys(e)
+	function onOpenChange(e: string[]) {
+		setOpenKeys(e);
 	}
 
 	return (

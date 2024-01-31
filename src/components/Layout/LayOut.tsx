@@ -10,11 +10,14 @@ import { useCommonStore } from "@/hooks/useCommonStore";
 import { addTabItem } from "@/store/Tab";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/store";
+import { useNavigate } from "react-router-dom";
+import config from "@/config";
 
 function LayOut() {
 	const { pathname } = useLocation();
 	const { tabList } = useCommonStore();
 	const dispatch: AppDispatch = useDispatch();
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		//  修改html title
@@ -36,6 +39,13 @@ function LayOut() {
 				);
 			}
 		}
+
+		const isLogin = localStorage.getItem(config.TOKEN_NAME)
+		console.log("token", isLogin)
+		if (!isLogin){
+			navigate("login")
+		}
+
 	}, [pathname]);
 
 	return (

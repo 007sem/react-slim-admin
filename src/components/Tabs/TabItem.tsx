@@ -1,5 +1,5 @@
 import { CloseOutlined } from "@ant-design/icons";
-import { useEffect, useState, MouseEvent, useRef } from "react";
+import { useEffect, useState, MouseEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { TabItemType } from "./type";
 import { useCommonStore } from "@/hooks/useCommonStore";

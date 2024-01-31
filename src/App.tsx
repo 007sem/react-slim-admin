@@ -5,7 +5,6 @@ import { RouteType } from "./route/type";
 
 import { KeepAlive } from "react-activation";
 
-import { useLocation } from "react-router-dom";
 
 export const MenuContext = createContext<any>([]);
 
