@@ -56,7 +56,6 @@ function LayOut() {
 					<Header></Header>
 					<div
 						style={{
-							backgroundColor: "#bfa",
 							height: "100%",
 						}}
 					>

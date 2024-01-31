@@ -15,8 +15,8 @@ const defaultAccount = {
 
 function Login() {
 
-    const [username, setUsername] = useState()
-    const [password, setPassword] = useState()
+    const [username, setUsername] = useState<string>()
+    const [password, setPassword] = useState<string>()
 
     function usernameChange(e: any) {
         setUsername(e.target.value)
@@ -32,6 +32,8 @@ function Login() {
             window.location.href = "/"
         }  else {
             // 登录失败
+            setUsername("")
+            setPassword("")
         }
     }
 
@@ -39,7 +41,7 @@ function Login() {
 	return (
 		<div className="login">
 			<div className="left">
-				<h1>Thin Admin 轻到极致</h1>
+				<h1>Slim Admin 轻到极致</h1>
 				<img src={Login_svg} alt="" />
 			</div>
 			<div className="right">
