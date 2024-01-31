@@ -1,39 +1,76 @@
-.tab-bar{
-    display: flex;
-    align-items: center;
-    padding: 0.4rem 1rem;
+.tab-bar {
+	display: flex;
+	align-items: center;
+	padding: 0.4rem 1rem;
 }
-.tab-item{
-    font-size: 14px;
-    padding: 0.2rem 10px ;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    border-radius: 4px;
-    color: #e0e0e0;
-    background-color: #333;
-    opacity: 0.5;
-    cursor: pointer;
+.tab-item {
+	font-size: 14px;
+	padding: 0.2rem 10px;
+	margin-right: 10px;
+	display: flex;
+	align-items: center;
+	border-radius: 4px;
+	color: #e0e0e0;
+	background-color: #333;
+	opacity: 0.5;
+	transition: opacity 0.2s;
+	cursor: pointer;
+}
+.tab-item.active {
+	color: #fff;
+	opacity: 1;
+}
+.close-icon {
+	font-size: 10px;
+	padding: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	margin-left: 10px;
+}
+.close-icon:hover {
+	background-color: #999999;
+}
+.tab-item:hover {
+	opacity: 1;
+}
+.name{
+    transform: scale(0.9);
+}
 
+.entry {
+	animation: slide-in-fwd-center 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+		;
 }
-.tab-item.active{
-    color: #fff;
-    opacity: 1;
+.leave {
+	animation:slide-out-bck-center 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+		;
 }
-.close-icon{
-    font-size: 10px;
-    padding: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    margin-left: 10px;
-}
-.close-icon:hover{
-    background-color: #999999;
-}
-.tab-item:hover{
-    opacity: 1;
-}
+
+@keyframes slide-in-fwd-center {
+    0% {
+      -webkit-transform: translateZ(-1400px);
+              transform: translateZ(-1400px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      opacity: 0.5;
+    }
+  }
+  @keyframes slide-out-bck-center {
+    0% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      opacity: 0.5;
+    }
+    100% {
+      -webkit-transform: translateZ(-1100px);
+              transform: translateZ(-1100px);
+      opacity: 0;
+    }
+  }

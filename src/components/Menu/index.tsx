@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import type { AppDispatch, MenuListItem } from "@/store";
 import { useCommonStore } from "@/hooks/useCommonStore";
 import { setMenuList } from "@/store/menu";
+import { changeActive } from "@/store/Tab";
 
 import logo from "@/assets/react.svg";
 import "./menu.less";
@@ -52,19 +53,19 @@ function MenuComponent() {
 				pathArr.length - 1
 			);
 		}
-		
+		// TODO 修复collapse 变化 openkeys bu
 		if(isArrInclude(openKeys, _openKeys)){
-			console.log(openKeys, _openKeys);
-			setOpenKeys(_openKeys);
+			if(!isCollapsed)setOpenKeys(_openKeys);
 		}
 		setSelectedKeys(_selectKeys);
 		dispatch(setMenuList(MenuList));
+		dispatch(changeActive(pathname))
 	}, [pathname]);
 
 
-	useEffect(()=>{
-		setOpenKeys([]);
-	},[isCollapsed])
+	// useEffect(()=>{
+	// 	setOpenKeys([]);
+	// },[isCollapsed])
 
 	let MenuList: MenuListItem[] = [];
 
@@ -88,14 +89,12 @@ function MenuComponent() {
 	let items: any[] = GetMenuItems(MenuData);
 
 	const handleClick = (e: { keyPath: string[]; key: string }) => {
-		console.log("menu click");
+
 		let path = e.keyPath.reverse().join("/");
 		navigate(path);
 	};
 
-	// TODO 修复collapse 变化 openkeys bug
 	function onOpenChange(e: string[]){
-		console.log("onOpenChange", e);
 		setOpenKeys(e)
 	}
 

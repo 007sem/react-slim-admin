@@ -9,12 +9,14 @@ export const useCommonStore = () => {
 	const selectedKeys = useSelector((state: RootState) => state.menu.selectedKeys);
 	const openKeys = useSelector((state: RootState) => state.menu.openKeys);
 	const tabList = useSelector((state: RootState) => state.tab.tabList);
+	const tabActive = useSelector((state: RootState) => state.tab.tabActive);
 
 	return {
 		menuList,
         isCollapsed,
 		selectedKeys,
 		openKeys,
-		tabList
+		tabList,
+		tabActive
 	};
 };

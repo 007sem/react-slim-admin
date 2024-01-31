@@ -11,6 +11,7 @@ const tabSlice = createSlice({
 				active: "true",
 			},
 		] as TabItemType[],
+		tabActive: "/" as string,
 	},
 	reducers: {
 		setTabList: (state, action) => {
@@ -25,9 +26,12 @@ const tabSlice = createSlice({
 				(item) => item.name !== action.payload
 			);
 		},
+		changeActive: (state, action) =>{
+			state.tabActive = action.payload
+		}
 	},
 });
 
-export const { setTabList, addTabItem, deleteTab } = tabSlice.actions;
+export const { setTabList, addTabItem, deleteTab, changeActive } = tabSlice.actions;
 
 export default tabSlice.reducer;
