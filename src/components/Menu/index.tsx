@@ -9,7 +9,6 @@ import { useCommonStore } from "@/hooks/useCommonStore";
 import { setMenuList } from "@/store/menu";
 import { changeActive } from "@/store/Tab";
 import { useLocationHooks } from "@/hooks/useLoaction";
-import { isArrInclude } from "@/util"
 
 import logo from "@/assets/react.svg";
 import "./menu.less";
@@ -31,8 +30,7 @@ function MenuComponent() {
 	const dispatch: AppDispatch = useDispatch();
 	const { isCollapsed } = useCommonStore();
 
-	const { fullName, currentName } = useLocationHooks();
-	console.log("fullname", fullName, currentName);
+	// const { fullName, currentName } = useLocationHooks();
 
 	let pathArr = pathname.split("/");
 
@@ -55,9 +53,7 @@ function MenuComponent() {
 			);
 		}
 		// TODO 修复collapse 变化 openkeys bu
-		if (isArrInclude(openKeys, _openKeys)) {
-			if (!isCollapsed) setOpenKeys(_openKeys);
-		}
+		if (!isCollapsed) setOpenKeys(_openKeys);
 		setSelectedKeys(_selectKeys);
 		dispatch(setMenuList(MenuList));
 		dispatch(changeActive(pathname));

@@ -24,7 +24,7 @@ function BreadCrumb() {
 		}
 	}
 
-	return <Breadcrumb items={[{ title: "首页" }, ...getBreadcrumb()]} />;
+	return <Breadcrumb items={[{ title: "工作台" }, ...getBreadcrumb()]} />;
 }
 
 export default BreadCrumb;

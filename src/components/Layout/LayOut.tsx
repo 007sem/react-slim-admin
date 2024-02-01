@@ -41,7 +41,6 @@ function LayOut() {
 		}
 
 		const isLogin = localStorage.getItem(config.TOKEN_NAME)
-		console.log("token", isLogin)
 		if (!isLogin){
 			navigate("login")
 		}
@@ -57,6 +56,7 @@ function LayOut() {
 					<div
 						style={{
 							height: "100%",
+							padding: "1rem 4rem",
 						}}
 					>
 						<Outlet />

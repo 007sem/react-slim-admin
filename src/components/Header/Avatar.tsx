@@ -17,7 +17,7 @@ function AvatarComponent() {
 		},
 		{
 			key: "goToHome",
-			label: "首页",
+			label: "工作台",
 		},
 		{
 			type: "divider",

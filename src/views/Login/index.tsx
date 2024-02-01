@@ -5,6 +5,7 @@ import { Input, Button, Checkbox } from "antd";
 import { UserOutlined, KeyOutlined,  } from "@ant-design/icons";
 
 import config from "@/config";
+import { setTitle } from "@/util";
 
 import { useState } from "react";
 
@@ -17,6 +18,8 @@ function Login() {
 
     const [username, setUsername] = useState<string>()
     const [password, setPassword] = useState<string>()
+
+    setTitle("登录")
 
     function usernameChange(e: any) {
         setUsername(e.target.value)

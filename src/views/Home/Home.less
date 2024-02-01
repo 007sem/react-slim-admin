@@ -1,0 +1,59 @@
+.home{
+    // background-color: aqua;
+}
+.banner{
+    display: flex;
+    .banner-content{
+        width: 60%;
+        height: 38vh;
+        margin-right: 2rem;
+        background-color: #D1EBFD;
+        border-radius: 1rem;
+        padding: 2rem;
+        display: flex;
+        .banner-content-right{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+                height: 140px;
+                display: block;
+            }
+        }
+    }
+    .banner-charts{
+        width: 40%;
+        .banner-charts-item{
+            background-color: #0092B3;
+            height: calc((100% - 1rem) / 2);
+            padding: 0 2rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            .text{
+                margin-left: 1rem;
+                h3{
+                    margin: 0;
+                    margin-bottom: .8rem;
+                    font-size: 2rem;
+                }
+                p{
+                    margin: 0;
+                    opacity: 0.6;
+                    
+                }
+            }
+            .icon{
+                text-align: end;
+                width: 100%;
+                opacity: 0.3;
+            }
+        }
+        .banner-charts-item:first-child{
+            background-color: #006DC7;
+            margin-bottom: 1rem;
+        }
+    }
+}

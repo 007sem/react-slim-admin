@@ -25,13 +25,13 @@ export const routes: RouteType[] = [
 			{
 				index: "true",
 				path: "/",
-				name: "首页",
+				name: "工作台",
 				icon: <HomeOutlined />,
 				element: <Home />,
 			},
 			{
 				path: "charts",
-				name: "图表",
+				name: "分析",
 				element: <Charts />,
 				icon: <FundOutlined />,
 			},
