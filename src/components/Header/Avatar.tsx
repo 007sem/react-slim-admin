@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, message } from "antd";
+import { Avatar, Dropdown } from "antd";
 import type { MenuProps } from "antd";
 import config from "@/config";
 import { useNavigate } from "react-router-dom";
@@ -54,8 +54,8 @@ function AvatarComponent() {
 
 
 	return (
-		<Dropdown menu={{ items, onClick }} placement="bottomRight">
-			<Avatar />
+		<Dropdown menu={{ items, onClick }} placement="bottomRight" trigger={["click"]}>
+			<Avatar style={{cursor:"pointer"}} />
 		</Dropdown>
 	);
 }

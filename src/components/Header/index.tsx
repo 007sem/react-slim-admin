@@ -6,6 +6,11 @@ import Tabs from "@/components/Tabs";
 import AvatarComponent from "./Avatar"
 
 
+import ReloadIcon from "./HeaderIcon/ReloadIcon";
+import NotificationsIcon from "./HeaderIcon/NotificationsIcon";
+import SettingIcon from "./HeaderIcon/SettingIcon"
+
+
 
 import { SettingOutlined, BellOutlined } from "@ant-design/icons";
 
@@ -32,8 +37,9 @@ function Header() {
 					<BreadCrumb />
 				</div>
 				<div className="header-top-right">
-					<BellOutlined style={iconStyle} />
-					<SettingOutlined style={iconStyle} />
+					<ReloadIcon />
+					<NotificationsIcon />
+					<SettingIcon />
 					{/* 头像 */}
 					<AvatarComponent />
 					
