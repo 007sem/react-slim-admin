@@ -12,7 +12,7 @@ import { useLocationHooks } from "@/hooks/useLoaction";
 
 function ReloadIcon () {
 
-    const { refreshScope, getCachingNodes } = useAliveController();
+    const { refresh, getCachingNodes } = useAliveController();
     const { currentName } = useLocationHooks()
 
     const items: MenuProps["items"] = [
@@ -24,7 +24,7 @@ function ReloadIcon () {
     const onClick: MenuProps["onClick"] = ({ key }) => {
         switch (key) {
             case "1":
-                refreshScope(currentName as string)
+                refresh(currentName as string)
                 break;
             default:
                 break;

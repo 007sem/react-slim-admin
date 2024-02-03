@@ -26,7 +26,7 @@ function App() {
 					...route,
 					alive: true,
 					element: (
-						<KeepAlive cacheKey={route.path} name={route.name}>
+						<KeepAlive cacheKey={route.path} name={route.path}>
 							{route.element}
 						</KeepAlive>
 					),
