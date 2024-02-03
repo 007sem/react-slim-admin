@@ -31,7 +31,7 @@ function TotalCard({ data }: TotalCardProps) {
 		chart: {
 			type: "line",
 			width: 120,
-			height: 40,
+			height: "auto",
 
 			sparkline: {
 				enabled: true,

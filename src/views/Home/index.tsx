@@ -14,14 +14,14 @@ function Home() {
 			text: "今日成交额",
 			icon: <SignalFilled style={{ fontSize: "5rem" }} />,
 			count: "34,765",
-			bgc: "#0092b3"
+			bgc: "#0092b3",
 		},
 		{
 			percent: 54,
 			text: "今日单量",
 			icon: <FireFilled style={{ fontSize: "5rem" }} />,
 			count: "2,765",
-			bgc: "#006dc7"
+			bgc: "#006dc7",
 		},
 	];
 	const week_charts_list = [
@@ -65,18 +65,21 @@ function Home() {
 					</div>
 				</Col>
 				<Col span={8}>
-					<Space direction="vertical" style={{width:"100%"}} size={16}>
+					<Space
+						direction="vertical"
+						style={{ width: "100%" }}
+						size={16}
+					>
 						{banner_charts_list.map((item, index) => {
 							return (
-								
-									<RadialbarCharts
-										key={item.text}
-										bgc={item.bgc}
-										percent={item.percent}
-										text={item.text}
-										icon={item.icon}
-										count={item.count}
-									/>
+								<RadialbarCharts
+									key={item.text}
+									bgc={item.bgc}
+									percent={item.percent}
+									text={item.text}
+									icon={item.icon}
+									count={item.count}
+								/>
 							);
 						})}
 					</Space>

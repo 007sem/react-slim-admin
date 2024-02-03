@@ -7,9 +7,12 @@ function ReloadIcon() {
 	
 
 	return (
+		<div className="icon-wrapper">
 			<div className="header-icon-hover">
 				<BellOutlined style={iconStyle} />
 			</div>
+		</div>
+			
 	);
 }
 
