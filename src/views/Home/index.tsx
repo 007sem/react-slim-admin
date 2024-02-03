@@ -14,12 +14,14 @@ function Home() {
 			text: "今日成交额",
 			icon: <SignalFilled style={{ fontSize: "5rem" }} />,
 			count: "34,765",
+			bgc: "#0092b3"
 		},
 		{
 			percent: 54,
 			text: "今日单量",
 			icon: <FireFilled style={{ fontSize: "5rem" }} />,
 			count: "2,765",
+			bgc: "#006dc7"
 		},
 	];
 	const week_charts_list = [
@@ -45,51 +47,45 @@ function Home() {
 
 	return (
 		<div className="home">
-			<div className="banner">
-				<div className="banner-content">
-					<div className="banner-content-left">
-						<h2>欢迎回来</h2>
-						<p>
-							If you are going to use a passage of Lorem Ipsum,
-							you need to be sure there is not anything.
-						</p>
-						<Button type="primary"> Go now </Button>
+			<Row gutter={[16, 16]} className="mb-16">
+				<Col span={16}>
+					<div className="banner-content">
+						<div className="banner-content-left">
+							<h2>欢迎回来</h2>
+							<p>
+								If you are going to use a passage of Lorem
+								Ipsum, you need to be sure there is not
+								anything.
+							</p>
+							<Button type="primary"> Go now </Button>
+						</div>
+						<div className="banner-content-right">
+							<img src={home_banner} alt="" />
+						</div>
 					</div>
-					<div className="banner-content-right">
-						<img src={home_banner} alt="" />
-					</div>
-				</div>
-				<div className="banner-charts">
-					<ConfigProvider
-						theme={{
-							components: {
-								Progress: {
-									/* 这里是你的组件 token */
-									circleTextColor: "#fff",
-									remainingColor: "rgba(255, 255, 255, 0.3)",
-									circleTextFontSize: "1.5rem",
-								},
-							},
-						}}
-					>
+				</Col>
+				<Col span={8}>
+					<Space direction="vertical" style={{width:"100%"}} size={16}>
 						{banner_charts_list.map((item, index) => {
 							return (
-								<RadialbarCharts
-									key={item.text}
-									percent={item.percent}
-									text={item.text}
-									icon={item.icon}
-									count={item.count}
-								/>
+								
+									<RadialbarCharts
+										key={item.text}
+										bgc={item.bgc}
+										percent={item.percent}
+										text={item.text}
+										icon={item.icon}
+										count={item.count}
+									/>
 							);
 						})}
-					</ConfigProvider>
-				</div>
-			</div>
+					</Space>
+				</Col>
+			</Row>
 			<Row className="total-charts" gutter={[16, 16]}>
 				{week_charts_list.map((item, index) => (
 					<Col span={8} key={item.text}>
-						<TotalCard  data={item} />
+						<TotalCard data={item} />
 					</Col>
 				))}
 			</Row>

@@ -1,23 +1,22 @@
 import Card from "@/components/Card";
 import Chart from "react-apexcharts";
-import icon_rise from "@/assets/svg/icon_rise.svg"
-import icon_down from "@/assets/svg/icon_down.svg"
+import icon_rise from "@/assets/svg/icon_rise.svg";
+import icon_down from "@/assets/svg/icon_down.svg";
 
-import type { Props as ApexChartProps } from 'react-apexcharts';
-
+import type { Props as ApexChartProps } from "react-apexcharts";
 
 interface TotalCardProps {
 	data: {
 		text: string;
 		count: string | number;
 		chartsData: number[];
-		percent: string
+		percent: string;
 	};
 }
 
 function getIsRise(percent: string) {
-    // 获取percent字符串第一项  如果是 "+" 返回true
-    return percent.charAt(0) === "+";
+	// 获取percent字符串第一项  如果是 "+" 返回true
+	return percent.charAt(0) === "+";
 }
 
 function TotalCard({ data }: TotalCardProps) {
@@ -32,7 +31,7 @@ function TotalCard({ data }: TotalCardProps) {
 		chart: {
 			type: "line",
 			width: 120,
-            height: 40,
+			height: 40,
 
 			sparkline: {
 				enabled: true,
@@ -72,15 +71,9 @@ function TotalCard({ data }: TotalCardProps) {
 		dataLabels: {
 			show: false,
 		},
-	} as ApexChartProps
+	} as ApexChartProps;
 
-
-    
-    
-
-
-    const icon = getIsRise(data.percent) ? icon_rise : icon_down;
-
+	const icon = getIsRise(data.percent) ? icon_rise : icon_down;
 
 	return (
 		<Card
@@ -92,12 +85,10 @@ function TotalCard({ data }: TotalCardProps) {
 			}}
 		>
 			<div className="text" style={{ width: "100%" }}>
-				<div className="title" >
-					{data.text}
+				<div className="title">{data.text}</div>
+				<div className="up_or_down">
+					<img src={icon} alt="" /> {data.percent}
 				</div>
-                <div className="up_or_down">
-                    <img src={icon} alt="" /> {data.percent}
-                </div>
 				<div
 					className="count"
 					style={{ fontSize: "2rem", fontWeight: "bold" }}
@@ -105,13 +96,12 @@ function TotalCard({ data }: TotalCardProps) {
 					{data.count}
 				</div>
 			</div>
-			<div className="charts">
-				<Chart
-					options={options}
-					series={series}
-					type="line"
-				/>
-			</div>
+			<Chart
+				className="charts"
+				options={options}
+				series={series}
+				type="line"
+			/>
 		</Card>
 	);
 }
