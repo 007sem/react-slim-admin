@@ -1,5 +1,5 @@
 import "./Home.less";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, ConfigProvider } from "antd";
 import home_banner from "@/assets/svg/home_banner2.svg";
 import { SignalFilled, FireFilled } from "@ant-design/icons";
@@ -11,6 +11,13 @@ import HotGoods from "./HotGoods";
 import { Col, Row, Space } from "antd";
 
 function Home() {
+
+	console.log("home")
+	useEffect(()=>{
+		console.log("home effect")
+	},[])
+	
+
 	const banner_charts_list = [
 		{
 			percent: 70,

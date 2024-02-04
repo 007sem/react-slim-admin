@@ -22,7 +22,7 @@ function createRandomGoods(): GoodsType {
     } 
 }
 
-export function generateGoods(size: number) {
+export function generateGoods(size: number): GoodsType[]{
     return faker.helpers.multiple(createRandomGoods, {
 		count: size,
 	});

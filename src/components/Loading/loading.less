@@ -1,0 +1,98 @@
+.loading-component{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    transform: scale(1.5);
+}
+
+.loading {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    animation: animationContainer 1s ease infinite;
+  }
+  
+  .shape {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+  }
+  
+  .shape-1 {
+    background-color: #D1EBFD;
+    left: 0;
+    animation: animationShape1 0.5s ease infinite alternate;
+  }
+  
+  .shape-2 {
+    background-color: #D1EBFD;
+    right: 0;
+    animation: animationShape2 0.5s ease infinite alternate;
+  }
+  
+  .shape-3 {
+    background-color: #D1EBFD;
+    bottom: 0;
+    animation: animationShape3 0.5s ease infinite alternate;
+  }
+  
+  .shape-4 {
+    background-color: #D1EBFD;
+    right: 0;
+    bottom: 0;
+    animation: animationShape4 0.5s ease infinite alternate;
+  }
+  
+  @keyframes animationContainer {
+    0% {
+      transform: rotate(0);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes animationShape1 {
+    0% {
+      transform: translate(0, 0);
+    }
+  
+    100% {
+      transform: translate(20px, 20px);
+    }
+  }
+  
+  @keyframes animationShape2 {
+    0% {
+      transform: translate(0, 0);
+    }
+  
+    100% {
+      transform: translate(-20px, 20px);
+    }
+  }
+  
+  @keyframes animationShape3 {
+    0% {
+      transform: translate(0, 0);
+    }
+  
+    100% {
+      transform: translate(20px, -20px);
+    }
+  }
+  
+  @keyframes animationShape4 {
+    0% {
+      transform: translate(0, 0);
+    }
+  
+    100% {
+      transform: translate(-20px, -20px);
+    }
+  }

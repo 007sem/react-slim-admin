@@ -1,17 +1,16 @@
 import { generateGoods } from "@/faker/goods"; 
-import HomeTable from "./components/homeTable";
+import HomeTable from "./components/HomeTable";
 import { Avatar } from "antd"
 
+import { useEffect, useState } from "react"; 
 
 function HotGoods () {
-    const goods = generateGoods(5)
-    // id: string,
-    // image: string,
-    // name: string,
-    // price: number | string,
-    // description: string,
-    // totalSales:  number | string,
+    const [goods, setGoods] = useState<any[]>([])
 
+    useEffect(() => {
+        setGoods(generateGoods(5))
+    },[])
+    
     const columns = [
 		{
 			title: "Hot Goods",

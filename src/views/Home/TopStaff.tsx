@@ -1,12 +1,17 @@
+import { useState, useEffect } from "react";
+
 import { generateUser } from "@/faker/user";
 import { Avatar } from "antd";
-import HomeTable from "./components/homeTable";
+import HomeTable from "./components/HomeTable";
 
 function TopStaff() {
-	let users = generateUser(5);
-	users = users.sort((a, b) => b.orders - a.orders);
+	const [users, setUsers] = useState<any[]>([]);
 
-  const columns = [
+	useEffect(() => {
+		setUsers(generateUser(5).sort((a, b) => b.orders - a.orders));
+	}, []);
+
+	const columns = [
 		{
 			title: "Top Staff",
 			dataIndex: "name",
@@ -44,9 +49,7 @@ function TopStaff() {
 		},
 	];
 
-	return (
-		<HomeTable data={users} columns={columns} />
-	);
+	return <HomeTable data={users} columns={columns} />;
 }
 
 export default TopStaff;

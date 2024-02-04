@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import MenuComponent from "@/components/Menu";
 import Header from "@/components/Header";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PathFindName, setTitle } from "@/util";
 import { useCommonStore } from "@/hooks/useCommonStore";
 import { addTabItem } from "@/store/Tab";
@@ -12,15 +12,17 @@ import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/store";
 import { useNavigate } from "react-router-dom";
 import config from "@/config";
-
+import LoadingComponent from "@/components/Loading";
 
 const { Content } = Layout;
+let loading_t: any = null;
 
 function LayOut() {
 	const { pathname } = useLocation();
 	const { tabList } = useCommonStore();
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const dispatch: AppDispatch = useDispatch();
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		//  修改html title
@@ -43,16 +45,26 @@ function LayOut() {
 			}
 		}
 
-		const isLogin = localStorage.getItem(config.TOKEN_NAME)
-		if (!isLogin){
-			navigate("login")
+		const isLogin = localStorage.getItem(config.TOKEN_NAME);
+		if (!isLogin) {
+			navigate("login");
 		}
 
+		// 模拟请求展示 Loading
+		// 后续可以使用 hook 控制 在请求拦截器中调用
+		setIsLoading(true);
+		loading_t = setTimeout(() => {
+			setIsLoading(false);
+		}, 600);
+
+		return () => {
+			clearTimeout(loading_t);
+		};
 	}, [pathname]);
 
 	return (
 		<Flex gap="middle" wrap="wrap">
-			<Layout style={{ maxHeight: "100vh"}}>
+			<Layout style={{ maxHeight: "100vh" }}>
 				<MenuComponent />
 				<Layout>
 					<Header></Header>
@@ -64,7 +76,7 @@ function LayOut() {
 							backgroundColor: "#fff",
 						}}
 					>
-						<Outlet />
+						{isLoading ? <LoadingComponent /> : <Outlet />}
 					</Content>
 				</Layout>
 			</Layout>

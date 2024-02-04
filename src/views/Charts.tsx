@@ -1,17 +1,13 @@
 import { useState } from "react";
 
+import LoadingComponent from "@/components/Loading";
+
 
 function Charts () {
     const [ count, setCount ] = useState<number>(0)
     
     return (
-        <div>
-            Charts
-            <div>
-                <h1>{count}</h1>
-            </div>
-            <button onClick={() => setCount(count + 1)}>+</button>
-        </div>
+        <LoadingComponent />
     )
 };
  
