@@ -18,9 +18,22 @@ function Card ({children, title, style, ...props}: CardProps) {
         }}
         {...props}
         >
+            {title && <CardTitle title={title} />}
             {children}
         </div>
     )
 };
+
+
+function CardTitle ({title}: {title: string}) {
+    return (
+        <div style={{
+            fontSize: "1.25rem",
+            paddingBottom: "0.5rem",
+            marginBottom: "1rem",
+            borderBottom: "1px solid #ccc",
+        }}>{title}</div>
+    )
+}
  
 export default Card;

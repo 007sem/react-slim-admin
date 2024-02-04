@@ -13,6 +13,9 @@ import type { AppDispatch } from "@/store";
 import { useNavigate } from "react-router-dom";
 import config from "@/config";
 
+
+const { Content } = Layout;
+
 function LayOut() {
 	const { pathname } = useLocation();
 	const { tabList } = useCommonStore();
@@ -49,18 +52,20 @@ function LayOut() {
 
 	return (
 		<Flex gap="middle" wrap="wrap">
-			<Layout>
+			<Layout style={{ maxHeight: "100vh"}}>
 				<MenuComponent />
 				<Layout>
 					<Header></Header>
-					<div
+					<Content
 						style={{
 							height: "100%",
 							padding: "1rem 4rem",
+							overflowY: "scroll",
+							backgroundColor: "#fff",
 						}}
 					>
 						<Outlet />
-					</div>
+					</Content>
 				</Layout>
 			</Layout>
 		</Flex>

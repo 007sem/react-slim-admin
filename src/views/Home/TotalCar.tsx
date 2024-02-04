@@ -27,6 +27,40 @@ function TotalCard({ data }: TotalCardProps) {
 		},
 	];
 
+	const icon = getIsRise(data.percent) ? icon_rise : icon_down;
+
+	return (
+		<Card
+			style={{
+				border: "1px solid #ccc",
+				padding: "2rem",
+				display: "flex",
+				alignItems: "center",
+			}}
+		>
+			<div className="text" style={{ width: "100%" }}>
+				<div className="title">{data.text}</div>
+				<div className="up_or_down">
+					<img src={icon} alt="" /> {data.percent}
+				</div>
+				<div
+					className="count"
+					style={{ fontSize: "2rem", fontWeight: "bold" }}
+				>
+					{data.count}
+				</div>
+			</div>
+			<SimpleLineCharts series={series} />
+		</Card>
+	);
+}
+
+interface SeriesType {
+	data: number[];
+	name: string;
+}
+
+function SimpleLineCharts({ series }: { series: SeriesType[] }) {
 	let options = {
 		chart: {
 			type: "line",
@@ -36,6 +70,13 @@ function TotalCard({ data }: TotalCardProps) {
 			sparkline: {
 				enabled: true,
 			},
+			animation:{
+				enabled: true,
+				animateGradually: {
+					enabled: true,
+					delay: 150
+				},
+			}
 		},
 		stroke: {
 			curve: "smooth",
@@ -72,37 +113,15 @@ function TotalCard({ data }: TotalCardProps) {
 			show: false,
 		},
 	} as ApexChartProps;
-
-	const icon = getIsRise(data.percent) ? icon_rise : icon_down;
-
 	return (
-		<Card
-			style={{
-				border: "1px solid #ccc",
-				padding: "2rem",
-				display: "flex",
-				alignItems: "center",
-			}}
-		>
-			<div className="text" style={{ width: "100%" }}>
-				<div className="title">{data.text}</div>
-				<div className="up_or_down">
-					<img src={icon} alt="" /> {data.percent}
-				</div>
-				<div
-					className="count"
-					style={{ fontSize: "2rem", fontWeight: "bold" }}
-				>
-					{data.count}
-				</div>
-			</div>
-			<Chart
-				className="charts"
-				options={options}
-				series={series}
-				type="line"
-			/>
-		</Card>
+		<Chart
+			className="charts"
+			options={options}
+			series={series}
+			type="line"
+			width={120}
+			height="auto"
+		/>
 	);
 }
 

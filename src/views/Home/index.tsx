@@ -5,6 +5,9 @@ import home_banner from "@/assets/svg/home_banner2.svg";
 import { SignalFilled, FireFilled } from "@ant-design/icons";
 import RadialbarCharts from "./RadialbarCharts";
 import TotalCard from "./TotalCar";
+import TopStaff from "./TopStaff";
+import HotGoods from "./HotGoods";
+
 import { Col, Row, Space } from "antd";
 
 function Home() {
@@ -85,12 +88,20 @@ function Home() {
 					</Space>
 				</Col>
 			</Row>
-			<Row className="total-charts" gutter={[16, 16]}>
+			<Row className="total-charts mb-16" gutter={[16, 16]}>
 				{week_charts_list.map((item, index) => (
 					<Col span={8} key={item.text}>
 						<TotalCard data={item} />
 					</Col>
 				))}
+			</Row>
+			<Row gutter={[16, 16]}>
+				<Col span={16}>
+					<TopStaff />
+				</Col>
+				<Col span={8}>
+					<HotGoods />
+				</Col>
 			</Row>
 		</div>
 	);
