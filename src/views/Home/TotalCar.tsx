@@ -31,8 +31,8 @@ function TotalCard({ data }: TotalCardProps) {
 
 	return (
 		<Card
+			border="true"
 			style={{
-				border: "1px solid #ccc",
 				padding: "2rem",
 				display: "flex",
 				alignItems: "center",
@@ -70,13 +70,6 @@ function SimpleLineCharts({ series }: { series: SeriesType[] }) {
 			sparkline: {
 				enabled: true,
 			},
-			animation:{
-				enabled: true,
-				animateGradually: {
-					enabled: true,
-					delay: 150
-				},
-			}
 		},
 		stroke: {
 			curve: "smooth",

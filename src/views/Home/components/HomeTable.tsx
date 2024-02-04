@@ -10,8 +10,8 @@ export default function HomeTable({
 }) {
 	return (
 		<Card
+			border="true"
 			style={{
-				border: "1px solid #ccc",
 				padding: "1rem",
 			}}
 		>
@@ -21,6 +21,7 @@ export default function HomeTable({
 						Table: {
 							/* 这里是你的组件 token */
 							bodySortBg: "#fff",
+							headerBg: "#fff",
 						},
 					},
 				}}
