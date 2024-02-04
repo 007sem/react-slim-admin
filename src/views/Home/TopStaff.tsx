@@ -1,30 +1,20 @@
-import Card from "@/components/Card";
 import { generateUser } from "@/faker/user";
-import { Table, Avatar, ConfigProvider } from "antd";
+import { Avatar } from "antd";
+import HomeTable from "./components/homeTable";
 
 function TopStaff() {
 	let users = generateUser(5);
+	users = users.sort((a, b) => b.orders - a.orders);
 
-  users = users.sort((a, b) => b.orders - a.orders);
-	console.log(users);
-
-  // 
-
-
-	// id: string;
-	// sex: string;
-	// avatar: string;
-	// name: string;
-	// email: string;
-	// sales: number;
-	// orders: number;
-
-	const columns = [
+  const columns = [
 		{
-			title: "Staff",
+			title: "Top Staff",
 			dataIndex: "name",
 			key: "name",
-			render: (_:any, { avatar, name }: { avatar: string; name: string }) => {
+			render: (
+				_: any,
+				{ avatar, name }: { avatar: string; name: string }
+			) => {
 				return (
 					<div>
 						<Avatar
@@ -55,29 +45,7 @@ function TopStaff() {
 	];
 
 	return (
-		<Card
-			style={{
-				border: "1px solid #ccc",
-				padding: "1rem",
-			}}
-		>
-			<ConfigProvider
-				theme={{
-					components: {
-						Table: {
-							/* 这里是你的组件 token */
-							bodySortBg: "#fff",
-						},
-					},
-				}}
-			>
-				<Table
-					dataSource={users}
-					columns={columns}
-					pagination={false}
-				/>
-			</ConfigProvider>
-		</Card>
+		<HomeTable data={users} columns={columns} />
 	);
 }
 

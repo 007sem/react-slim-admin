@@ -1,14 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-interface User {
-	key: string;
-	sex: string;
-	avatar: string;
-	name: string;
-	email: string;
-	sales: number;
-	orders: number;
-}
+
 
 function createRandomUser() {
 	return {
@@ -20,6 +12,16 @@ function createRandomUser() {
 		sales: faker.number.int(10000),
 		orders: faker.number.int(200),
 	};
+}
+
+export interface User {
+	key: string;
+	sex: string;
+	avatar: string;
+	name: string;
+	email: string;
+	sales: number;
+	orders: number;
 }
 
 export function generateUser(size: number): User[] {
