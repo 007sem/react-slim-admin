@@ -5,15 +5,13 @@ import { RouteType } from "./route/type";
 
 import { KeepAlive } from "react-activation";
 
-
 export const MenuContext = createContext<any>([]);
 
 function App() {
-
-	console.log("App")
+	console.log("App");
 
 	// 不需要keep alive 的路由
-	const aliveIgnoreArr = ["login", "*"];
+	const aliveIgnoreArr = ["login", "*", "/not_found"];
 	function wrapKeepAlive(routes: RouteType[]): RouteType[] {
 		let res: RouteType[] = [];
 		routes.forEach((route) => {

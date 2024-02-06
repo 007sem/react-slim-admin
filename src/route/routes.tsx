@@ -1,4 +1,4 @@
-import { HomeOutlined, UserOutlined, FundOutlined } from "@ant-design/icons";
+import { HomeOutlined, UserOutlined, FundOutlined, WarningOutlined } from "@ant-design/icons";
 
 import LayOut from "@/components/Layout/LayOut";
 
@@ -89,10 +89,16 @@ export const routes: RouteType[] = [
 					},
 				],
 			},
+			{
+				path: "not_found",
+				name: "错误 404",
+				element: <NotFound />,
+				icon: <WarningOutlined />,
+			},
 		],
 	},
 	{
-		path: "*",
+		path: "/*",
 		name: "404",
 		element: <NotFound />,
 	},
