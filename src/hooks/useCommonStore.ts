@@ -10,6 +10,8 @@ export const useCommonStore = () => {
 	const openKeys = useSelector((state: RootState) => state.menu.openKeys);
 	const tabList = useSelector((state: RootState) => state.tab.tabList);
 	const tabActive = useSelector((state: RootState) => state.tab.tabActive);
+	const theme = useSelector((state: RootState) => state.theme.theme);
+	const themeStyle = useSelector((state: RootState) => state.theme.style);
 
 	return {
 		menuList,
@@ -17,6 +19,8 @@ export const useCommonStore = () => {
 		selectedKeys,
 		openKeys,
 		tabList,
-		tabActive
+		tabActive,
+		theme,
+		themeStyle
 	};
 };

@@ -1,5 +1,5 @@
 import { Menu, Layout, ConfigProvider } from "antd";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { routes } from "@/route/routes";
 import { RouteType } from "@/route/type";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -8,7 +8,6 @@ import type { AppDispatch, MenuListItem } from "@/store";
 import { useCommonStore } from "@/hooks/useCommonStore";
 import { setMenuList } from "@/store/menu";
 import { changeActive } from "@/store/Tab";
-import { useLocationHooks } from "@/hooks/useLoaction";
 
 import logo from "@/assets/react.svg";
 import "./menu.less";
@@ -23,14 +22,14 @@ function splitKeysArray(arr: string[], index: number): [string[], string[]] {
 
 
 function MenuComponent() {
-	console.log("menu show");
+	
 
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	const dispatch: AppDispatch = useDispatch();
-	const { isCollapsed } = useCommonStore();
-
-	// const { fullName, currentName } = useLocationHooks();
+	const { isCollapsed, themeStyle } = useCommonStore();
+	
+	console.log("menu show", themeStyle);
 
 	let pathArr = pathname.split("/");
 
@@ -57,11 +56,6 @@ function MenuComponent() {
 		dispatch(setMenuList(MenuList));
 		dispatch(changeActive(pathname));
 	}, [pathname]);
-
-	// useEffect(()=>{
-	// 	setOpenKeys([]);
-	// },[isCollapsed])
-
 	let MenuList: MenuListItem[] = [];
 
 	function GetMenuItems(tree: RouteType[]): any[] {
@@ -98,12 +92,13 @@ function MenuComponent() {
 				components: {
 					Menu: {
 						/* 这里是你的组件 token */
-						itemHoverColor: "#fff",
-						itemHoverBg: "#222",
-						itemSelectedBg: "#333",
-						itemSelectedColor: "#fff",
-						popupBg: "#181818",
-						itemColor: "#888",
+						itemHoverColor: themeStyle.textColor,
+						itemHoverBg: themeStyle.bgc2,
+						itemSelectedBg: themeStyle.bgc2,
+						itemSelectedColor: themeStyle.textColor,
+						popupBg: themeStyle.bgc,
+						itemColor: themeStyle.descColor,
+						activeBarBorderWidth: 0,
 					},
 				},
 			}}
@@ -113,7 +108,9 @@ function MenuComponent() {
 				style={{
 					height: "100vh",
 					padding: "1rem",
-					backgroundColor: "#181818",
+					backgroundColor: themeStyle.bgc,
+					borderRight: "1px dashed  " + themeStyle.borderColor,
+				
 				}}
 			>
 				<div className="aside">
@@ -137,4 +134,4 @@ function MenuComponent() {
 	);
 }
 
-export default MenuComponent;
+export default memo(MenuComponent);
