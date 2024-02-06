@@ -8,11 +8,12 @@ import AvatarComponent from "./Avatar"
 
 import ReloadIcon from "./HeaderIcon/ReloadIcon";
 import NotificationsIcon from "./HeaderIcon/NotificationsIcon";
-import SettingIcon from "./HeaderIcon/SettingIcon"
+import SettingsIcon from "./HeaderIcon/SettingsIcon"
+import GithubIcon from "./HeaderIcon/GithubIcon";
 
 
 
-import { SettingOutlined, BellOutlined } from "@ant-design/icons";
+import { GithubOutlined } from "@ant-design/icons";
 
 function Header() {
 	const iconStyle = {
@@ -37,9 +38,12 @@ function Header() {
 					<BreadCrumb />
 				</div>
 				<div className="header-top-right">
+					
+					
 					<ReloadIcon />
 					<NotificationsIcon />
-					<SettingIcon />
+					<SettingsIcon />
+					<GithubIcon />
 					{/* 头像 */}
 					<AvatarComponent />
 					
