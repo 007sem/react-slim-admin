@@ -52,7 +52,6 @@ function MenuComponent() {
 				pathArr.length - 1
 			);
 		}
-		// TODO 修复collapse 变化 openkeys bu
 		if (!isCollapsed) setOpenKeys(_openKeys);
 		setSelectedKeys(_selectKeys);
 		dispatch(setMenuList(MenuList));
