@@ -6,7 +6,7 @@ function createRandomUser() {
 	return {
 		key: faker.string.uuid(),
 		sex: faker.helpers.arrayElement(["Male", "Female"]),
-		avatar: faker.image.avatar(),
+		avatar: faker.image.avatarLegacy(),
 		name: faker.internet.userName(),
 		email: faker.internet.email(),
 		sales: faker.number.int(10000),

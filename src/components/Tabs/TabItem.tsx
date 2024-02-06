@@ -19,7 +19,7 @@ function TabItem({ name, path }: TabItemType) {
 
     const duration = 300;
 
-	const { tabList, tabActive } = useCommonStore();
+	const { tabList, tabActive, themeStyle } = useCommonStore();
 	const navigate = useNavigate();
 	const dispatch: AppDispatch = useDispatch();
 	const { dropScope } = useAliveController();
@@ -59,6 +59,11 @@ function TabItem({ name, path }: TabItemType) {
 				(active ? "active " : "") +
 				stage
 			}
+			style={{ 
+				background: themeStyle.bgc4,
+				opacity: active ? 1 : 0.5,
+				color: themeStyle.textColor
+			 }}
 			onClick={handleClick}
 		>
 			<span className="name">{name}</span>

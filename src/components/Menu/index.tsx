@@ -29,7 +29,7 @@ function MenuComponent() {
 	const dispatch: AppDispatch = useDispatch();
 	const { isCollapsed, themeStyle } = useCommonStore();
 	
-	console.log("menu show", themeStyle);
+	console.log("menu show");
 
 	let pathArr = pathname.split("/");
 
@@ -93,8 +93,8 @@ function MenuComponent() {
 					Menu: {
 						/* 这里是你的组件 token */
 						itemHoverColor: themeStyle.textColor,
-						itemHoverBg: themeStyle.bgc2,
-						itemSelectedBg: themeStyle.bgc2,
+						itemHoverBg: themeStyle.bgc3,
+						itemSelectedBg: themeStyle.bgc3,
 						itemSelectedColor: themeStyle.textColor,
 						popupBg: themeStyle.bgc,
 						itemColor: themeStyle.descColor,
@@ -109,7 +109,7 @@ function MenuComponent() {
 					height: "100vh",
 					padding: "1rem",
 					backgroundColor: themeStyle.bgc,
-					borderRight: "1px dashed  " + themeStyle.borderColor,
+					borderRight: "2px dashed  " + themeStyle.borderColor,
 				
 				}}
 			>

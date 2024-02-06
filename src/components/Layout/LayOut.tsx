@@ -19,7 +19,7 @@ let loading_t: any = null;
 
 function LayOut() {
 	const { pathname } = useLocation();
-	const { tabList } = useCommonStore();
+	const { tabList, themeStyle } = useCommonStore();
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const dispatch: AppDispatch = useDispatch();
 	const navigate = useNavigate();
@@ -79,7 +79,8 @@ function LayOut() {
 							height: "100%",
 							padding: "1rem 4rem",
 							overflowY: "scroll",
-							backgroundColor: "#fff",
+							backgroundColor: themeStyle.bgc,
+							color: themeStyle.textColor,
 						}}
 					>
 						{isLoading ? <LoadingComponent /> : <Outlet />}

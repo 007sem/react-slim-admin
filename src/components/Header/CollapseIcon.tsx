@@ -7,9 +7,14 @@ import { setIsCollapsed } from "@/store/menu"
 import { useCommonStore } from "@/hooks/useCommonStore";
 
 function CollapseIcon () {
-    const iconSize = "1.2rem";
-	const { isCollapsed } = useCommonStore()
+	const { isCollapsed, themeStyle } = useCommonStore()
 	const dispatch: AppDispatch = useDispatch()
+
+
+	const style = {
+		fontSize: "1.2rem",
+		color: themeStyle.textColor
+	}
 
 	// TODO: !isCollapsed BUG
 	const [collapsed, setCollapsed] = useState(!isCollapsed);
@@ -23,12 +28,12 @@ function CollapseIcon () {
         <div className="collaps-icon">
 				{collapsed ? (
 					<MenuFoldOutlined
-						style={{ fontSize: iconSize }}
+						style={style}
 						onClick={() => handleCollapse()}
 					/>
 				) : (
 					<MenuUnfoldOutlined
-						style={{ fontSize: iconSize }}
+						style={style}
 						onClick={() => handleCollapse()}
 					/>
 				)}

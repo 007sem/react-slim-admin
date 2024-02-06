@@ -1,11 +1,12 @@
 import { GithubOutlined } from "@ant-design/icons"
-import iconStyle from "./iconStyleConfig";
+import { useIconStyle } from "./iconStyleConfig";
 import { Tooltip } from "antd";
 
 
 function GithubIcon () {
     const tip_text = <span>访问GitHub</span>
     const link = "https://github.com/007sem/react-slim-admin"
+    const iconStyle = useIconStyle()
 
     function handleClick(){
         window.open(link)

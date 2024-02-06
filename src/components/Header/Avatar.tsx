@@ -2,8 +2,15 @@ import { Avatar, Dropdown } from "antd";
 import type { MenuProps } from "antd";
 import config from "@/config";
 import { useNavigate } from "react-router-dom";
+import { faker } from "@faker-js/faker";
+import { useEffect, useState } from "react";
 
 function AvatarComponent() {
+
+	const [avatarUrl, setAvatarUrl] = useState<string>("")
+	useEffect(()=>{
+		setAvatarUrl(faker.image.avatarLegacy())
+	},[])
 
     const navtigate = useNavigate()
 
@@ -55,7 +62,7 @@ function AvatarComponent() {
 
 	return (
 		<Dropdown menu={{ items, onClick }} placement="bottomRight" trigger={["click"]}>
-			<Avatar style={{cursor:"pointer"}} />
+			<Avatar src={avatarUrl} style={{cursor:"pointer"}} />
 		</Dropdown>
 	);
 }

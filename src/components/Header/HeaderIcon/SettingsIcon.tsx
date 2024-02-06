@@ -1,5 +1,5 @@
 import {  SettingOutlined } from "@ant-design/icons";
-import iconStyle from "./iconStyleConfig";
+import { useIconStyle } from "./iconStyleConfig";
 import "./iconStyle.less";
 import { Tooltip, Drawer } from "antd";
 import { useState } from "react"
@@ -10,6 +10,7 @@ import ChooseTheme from "./settings/ChooseTheme";
 function ReloadIcon() {
 
 	const [ open, setOpen ] = useState(false)
+	const style = useIconStyle();
 
 	const showDrawer = () => {
 		setOpen(true);
@@ -25,7 +26,7 @@ function ReloadIcon() {
 			<Tooltip placement="bottom" title={tip_text}>
 				<div className="icon-wrapper" onClick={showDrawer}>
 					<div className="header-icon-hover">
-						<SettingOutlined style={iconStyle} />
+						<SettingOutlined style={style} />
 					</div>
 				</div>
 			</Tooltip>

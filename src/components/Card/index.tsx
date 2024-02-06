@@ -1,5 +1,6 @@
 import "./Card.less"
 import { Children, ReactNode } from "react"; 
+import { useCommonStore } from "@/hooks/useCommonStore"; 
 
 
 interface CardProps {
@@ -11,11 +12,15 @@ interface CardProps {
 
 
 function Card ({children, title, style, border, ...props}: CardProps) {
+
+    const { themeStyle } = useCommonStore();
+
     
     return (
         <div style={{
             borderRadius: "1rem",
-            border: border ? "1px solid #eee" : "none",
+            backgroundColor: themeStyle.bgc2,
+            border: "1px solid transparent" ,
             ...style
         }}
         {...props}
