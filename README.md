@@ -22,10 +22,10 @@ Slim Admin 是一个现代化的后台管理模板，基于 `React 18`、`Vite`�
 
 ## 预览
 
-![home_light](C:\Users\Y\Desktop\slim-admin\public\home_light.png)
-![home_dark](C:\Users\Y\Desktop\slim-admin\public\home_dark.png)
-![analysis_light](C:\Users\Y\Desktop\slim-admin\public\analysis_light.png)
-![analysis_dark](C:\Users\Y\Desktop\slim-admin\public\analysis_dark.png)
+![home_light](https://007sem.github.io/img/home_light.png)
+![home_dark](https://007sem.github.io/img/home_dark.png)
+![analysis_light](https://007sem.github.io/img/analysis_light.png)
+![analysis_dark](https://007sem.github.io/img/analysis_dark.png)
 
 
 
