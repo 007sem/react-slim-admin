@@ -1,6 +1,6 @@
 import Card from "@/components/Card";
 import { Table, ConfigProvider } from "antd";
-import { useCommonStore } from "@/hooks/useCommonStore"; 
+import { useCommonStore } from "@/hooks/useCommonStore";
 
 export default function HomeTable({
 	data,
@@ -9,8 +9,7 @@ export default function HomeTable({
 	data: object[];
 	columns: object[];
 }) {
-
-	const { themeStyle } = useCommonStore()
+	const { themeStyle } = useCommonStore();
 
 	return (
 		<Card
@@ -24,18 +23,23 @@ export default function HomeTable({
 					components: {
 						Table: {
 							/* 这里是你的组件 token */
-							rowExpandedBg: "#bbffaa",
-							
-							headerBorderRadius:0,
+							headerBorderRadius: 0,
 							rowHoverBg: themeStyle.bgc3,
 							headerBg: themeStyle.bgc2,
 							headerColor: themeStyle.textColor,
-							bodySortBg:"red",
+							colorBgContainer:themeStyle.bgc2,
+							borderColor: themeStyle.borderColor,
+							colorText:themeStyle.textColor,
 						},
 					},
 				}}
 			>
-				<Table dataSource={data} columns={columns} pagination={false} />
+				<Table
+					style={{ background: "#bfa" }}
+					dataSource={data}
+					columns={columns}
+					pagination={false}
+				/>
 			</ConfigProvider>
 		</Card>
 	);

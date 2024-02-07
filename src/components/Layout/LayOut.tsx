@@ -19,7 +19,7 @@ let loading_t: any = null;
 
 function LayOut() {
 	const { pathname } = useLocation();
-	const { tabList, themeStyle } = useCommonStore();
+	const { tabList, themeStyle, isStretched } = useCommonStore();
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const dispatch: AppDispatch = useDispatch();
 	const navigate = useNavigate();
@@ -54,14 +54,11 @@ function LayOut() {
 		if (!isLogin) {
 			navigate("login");
 		}
-		
-		// TODO 颜色模板   light & dark
-		// TODO setting 功能
+
 		// TODO message 功能
 
 		// 模拟请求展示 Loading
 		// 后续可以使用 hook 控制 在请求拦截器中调用
-		
 
 		return () => {
 			clearTimeout(loading_t);
@@ -77,7 +74,7 @@ function LayOut() {
 					<Content
 						style={{
 							height: "100%",
-							padding: "1rem 4rem",
+							padding: "1rem " + (isStretched ? "4rem" : "1rem"),
 							overflowY: "scroll",
 							backgroundColor: themeStyle.bgc,
 							color: themeStyle.textColor,

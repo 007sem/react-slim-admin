@@ -33,12 +33,13 @@ function Card ({children, title, style, border, ...props}: CardProps) {
 
 
 function CardTitle ({title}: {title: string}) {
+    const { themeStyle } = useCommonStore();
     return (
         <div style={{
             fontSize: "1rem",
             paddingBottom: "1rem",
             marginBottom: "1rem",
-            borderBottom: "1px solid #eee",
+            borderBottom: "1px solid " + themeStyle.borderColor,
         }}>{title}</div>
     )
 }

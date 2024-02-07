@@ -13,6 +13,10 @@ export const useCommonStore = () => {
 	const theme = useSelector((state: RootState) => state.theme.theme);
 	const themeStyle = useSelector((state: RootState) => state.theme.style);
 
+	const isStretched = useSelector((state: RootState) => state.settings.isStretched);
+	const tabShow = useSelector((state: RootState) => state.settings.TabShow)
+	const beardCrumbShow = useSelector((state: RootState) => state.settings.BeardCrumbShow)
+
 	return {
 		menuList,
         isCollapsed,
@@ -21,6 +25,9 @@ export const useCommonStore = () => {
 		tabList,
 		tabActive,
 		theme,
-		themeStyle
+		themeStyle,
+		isStretched,
+		tabShow,
+		beardCrumbShow
 	};
 };

@@ -24,6 +24,7 @@ function ChooseTheme () {
         <div style={{
             display: 'flex',
             justifyContent: 'space-around',
+            marginBottom: "1rem"
         }}>
             <div className={"theme-item" + (currentTheme=="light" ? " active": "")} onClick={()=>{ChooseHandle("light")}}>
                 <img src={icon_theme_light} alt="" />

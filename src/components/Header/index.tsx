@@ -10,23 +10,32 @@ import NotificationsIcon from "./HeaderIcon/NotificationsIcon";
 import SettingsIcon from "./HeaderIcon/SettingsIcon";
 import GithubIcon from "./HeaderIcon/GithubIcon";
 
-import { useCommonStore } from "@/hooks/useCommonStore"; 
+import { useState, useEffect } from "react";
+import { useCommonStore } from "@/hooks/useCommonStore";
 
 function Header() {
+	const { themeStyle, beardCrumbShow, tabShow } = useCommonStore();
 
-	const { themeStyle } = useCommonStore()
+	const [isTabShow, setIsTabShow] = useState<boolean>(tabShow);
+	const [isBeardCrumbShow, setIsBeardCrumbShow] = useState<boolean>(beardCrumbShow);
+
+	useEffect(() => {
+	    setIsBeardCrumbShow(beardCrumbShow)
+		setIsTabShow(tabShow)
+	},[beardCrumbShow, tabShow])
 
 	return (
 		<div
 			className="header"
 			style={{
-				backgroundColor: themeStyle.bgc
+				backgroundColor: themeStyle.bgc,
 			}}
 		>
 			<div className="header-top">
 				<div className="header-top-left">
 					<CollapseIcon />
-					<BreadCrumb />
+					{isBeardCrumbShow? <BreadCrumb />:""}
+					
 				</div>
 				<div className="header-top-right">
 					<ReloadIcon />
@@ -37,10 +46,13 @@ function Header() {
 					<AvatarComponent />
 				</div>
 			</div>
-			<div className="header-bottom" style={{
-				borderBottom: "2px dashed " + themeStyle.borderColor,
-			}}>
-				<Tabs />
+			<div
+				className="header-bottom"
+				style={{
+					borderBottom: "2px dashed " + themeStyle.borderColor,
+				}}
+			>
+				{isTabShow ? <Tabs /> : ""}
 			</div>
 		</div>
 	);

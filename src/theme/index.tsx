@@ -7,10 +7,21 @@ export interface Theme {
     bgc3: string
     bgc4: string
     borderColor: string
+
+
+    primary: string
+    second:  string
+    third: string
 }
 
 
+
+
 export const DarkTheme: Theme = {
+    primary: "#EA33F7",
+    second:  "#ff00ff",
+    third: "#392467",
+
     textColor: '#fff',
     descColor: '#888',
     rColor: '#181818',
@@ -18,13 +29,23 @@ export const DarkTheme: Theme = {
     bgc2: "#222",
     bgc3: "#333",
     bgc4: "#555",
-    borderColor: "#e8e8e8"
+    borderColor: "#888",
 }
+
+
+
+
 export const LightTheme: Theme = {
+
+    primary: "#724ebf",
+    second:  "#ff00ff",
+    third: "#392467",
+
+
     textColor: '#181818',
     descColor: '#888',
     rColor: '#fff',
-    bgc: "#fff",
+    bgc: "#ffffff",
     bgc2: "#f6f6f6",
     bgc3: "#eee",
     bgc4: "#ddd",
