@@ -2,8 +2,11 @@ import Charts from "@/components/Charts";
 import Card from "@/components/Card";
 
 import type { Props as ApexChartProps } from "react-apexcharts";
+import { useCommonStore } from "@/hooks/useCommonStore";
 
 function ChartPie() {
+
+	const { themeStyle } = useCommonStore()
 
     const series = [44,  13, 43, 22]
 
@@ -11,6 +14,7 @@ function ChartPie() {
 		chart: {
             height: 350,
 			type: "pie",
+			foreColor: themeStyle.textColor
 		},
 		labels: ["Team A", "Team B", "Team C", "Team D",],
 		responsive: [

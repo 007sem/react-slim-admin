@@ -1,5 +1,5 @@
 import { useCommonStore } from "@/hooks/useCommonStore";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { setIsStretched } from "@/store/settings";
 import { useDispatch } from "react-redux";
 
@@ -23,6 +23,7 @@ function Stretch() {
 				cursor: "pointer",
 				textAlign: "center",
 				userSelect: "none",
+				background: themeStyle.bgc + "88",
 
 				color: themeStyle.primary,
 			}}

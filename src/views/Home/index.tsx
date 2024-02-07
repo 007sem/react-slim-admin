@@ -8,11 +8,16 @@ import TotalCard from "./TotalCar";
 import TopStaff from "./TopStaff";
 import HotGoods from "./HotGoods";
 
+import { useCommonStore } from "@/hooks/useCommonStore"; 
+
 import { Col, Row, Space } from "antd";
 
 function Home() {
 
-	console.log("home")
+	const op = "50" // 卡片透明值 00 ~ FF
+
+	const {themeStyle} =  useCommonStore()
+
 	useEffect(()=>{
 		console.log("home effect")
 	},[])
@@ -24,14 +29,14 @@ function Home() {
 			text: "今日成交额",
 			icon: <SignalFilled style={{ fontSize: "5rem" }} />,
 			count: "34,765",
-			bgc: "#0092b3",
+			bgc: themeStyle.second + op,
 		},
 		{
 			percent: 54,
 			text: "今日单量",
 			icon: <FireFilled style={{ fontSize: "5rem" }} />,
 			count: "2,765",
-			bgc: "#006dc7",
+			bgc: themeStyle.third + op,
 		},
 	];
 	const week_charts_list = [
@@ -59,7 +64,9 @@ function Home() {
 		<div className="home">
 			<Row gutter={[16, 16]} className="mb-16">
 				<Col span={16}>
-					<div className="banner-content">
+					<div className="banner-content" style={{
+						background:themeStyle.primary + op,
+					}}>
 						<div className="banner-content-left">
 							<h2>欢迎回来</h2>
 							<p>

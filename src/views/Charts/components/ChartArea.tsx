@@ -2,8 +2,11 @@ import Charts from "@/components/Charts";
 import Card from "@/components/Card";
 
 import type { Props as ApexChartProps } from "react-apexcharts";
+import { useCommonStore } from "@/hooks/useCommonStore";
 
 function ChartArea() {
+	const { themeStyle, theme } = useCommonStore();
+
 	const series = [
 		{
 			name: "Team A",
@@ -18,13 +21,14 @@ function ChartArea() {
 		chart: {
 			height: 350,
 			type: "area",
-            toolbar: {
-                show: false
-              }
+			toolbar: {
+				show: false,
+			},
+			foreColor: themeStyle.textColor
 		},
 		dataLabels: {
 			enabled: false,
-            show: false
+			// show: false
 		},
 		stroke: {
 			curve: "smooth",
@@ -40,32 +44,42 @@ function ChartArea() {
 				"2018-09-19T05:30:00.000Z",
 				"2018-09-19T06:30:00.000Z",
 			],
-            tooltip: {
-				enabled: false,
-			},
+			
 		},
 		tooltip: {
-			fixed: {
-				enabled: false,
-			},
+			// fixed: {
+			// 	enabled: false,
+			// },
+			theme: theme,
 			x: {
 				show: false,
 			},
-            onDatasetHover: {
+			style: {
+				color:"red",
+			  },
+			onDatasetHover: {
 				highlightDataSeries: false,
 			},
+
 		},
-        legend: {
-            position: 'top',
-            horizontalAlign: 'right',
-            offsetX: -10
-          },
+		legend: {
+			position: "top",
+			horizontalAlign: "right",
+			offsetX: -10,
+			labels: {
+				colors: themeStyle.textColor,
+			},
+		},
 	} as ApexChartProps;
 
 	return (
-		<Card border="true" title="Area Chart" style={{
-            padding:"1rem",
-        }}>
+		<Card
+			border="true"
+			title="Area Chart"
+			style={{
+				padding: "1rem",
+			}}
+		>
 			<Charts options={op} series={series} type="area" height="350" />
 		</Card>
 	);

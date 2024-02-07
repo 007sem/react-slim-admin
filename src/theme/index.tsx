@@ -14,13 +14,13 @@ export interface Theme {
     third: string
 }
 
-
+// TODO 完善 antd theme & 主色调
 
 
 export const DarkTheme: Theme = {
-    primary: "#EA33F7",
-    second:  "#ff00ff",
-    third: "#392467",
+    primary: "#7743DB",
+    second:  "#EA1179",
+    third: "#944E63",
 
     textColor: '#fff',
     descColor: '#888',
@@ -37,9 +37,9 @@ export const DarkTheme: Theme = {
 
 export const LightTheme: Theme = {
 
-    primary: "#724ebf",
-    second:  "#ff00ff",
-    third: "#392467",
+    primary: "#6499E9",
+    second:  "#FF6868",
+    third: "#FFBB64",
 
 
     textColor: '#181818',

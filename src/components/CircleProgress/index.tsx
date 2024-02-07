@@ -1,4 +1,5 @@
 import { Progress, ConfigProvider } from "antd";
+import { useCommonStore } from "@/hooks/useCommonStore"
 
 interface CircleProgressProps {
 	percent: number;
@@ -27,13 +28,16 @@ function CircleProgress({
     remainingColor = remainingColor || "rgba(255, 255, 255, 0.3)";
     circleTextFontSize = circleTextFontSize || "1.5rem";
 
+
+	const {themeStyle} = useCommonStore();
+
 	return (
 		<ConfigProvider
 			theme={{
 				components: {
 					Progress: {
 						/* 这里是你的组件 token */
-						circleTextColor: "#fff",
+						circleTextColor: themeStyle.textColor,
 						remainingColor: "rgba(255, 255, 255, 0.3)",
 						circleTextFontSize: "1.5rem",
 					},

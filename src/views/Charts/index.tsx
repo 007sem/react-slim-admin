@@ -23,15 +23,6 @@ function Charts() {
 	const [topCardList, setTopCardList] = useState<TopCardProps[]>([]);
 
 	useEffect(() => {
-		// 模拟topCardList数据
-		/*
-        {
-            icon,
-            bgc,
-            value,
-            text,
-        }
-        */
 		setTopCardList([
             {
                 icon: <img src={bag}></img>,

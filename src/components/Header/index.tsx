@@ -38,10 +38,11 @@ function Header() {
 					
 				</div>
 				<div className="header-top-right">
+					<GithubIcon />
 					<ReloadIcon />
 					<NotificationsIcon />
 					<SettingsIcon />
-					<GithubIcon />
+					
 					{/* 头像 */}
 					<AvatarComponent />
 				</div>

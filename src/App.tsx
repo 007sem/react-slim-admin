@@ -1,14 +1,16 @@
 import { routes } from "@/route/routes.jsx";
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import { createContext } from "react";
+import {  } from "react";
 import { RouteType } from "./route/type";
+import { ConfigProvider } from "antd"
 
 import { KeepAlive } from "react-activation";
+import { useCommonStore } from "./hooks/useCommonStore"; 
 
-export const MenuContext = createContext<any>([]);
 
 function App() {
 	console.log("App");
+	const { themeStyle } = useCommonStore()
 
 	// 不需要keep alive 的路由
 	const aliveIgnoreArr = ["login", "*", "/not_found"];
@@ -43,7 +45,20 @@ function App() {
 	// @ts-ignore
 	const router = createHashRouter(aliveRoutes);
 
-	return <RouterProvider router={router} />;
+	return (
+		<ConfigProvider
+		theme={{
+			token: {
+			  // Seed Token，影响范围大
+			  colorPrimary: themeStyle.primary,
+			},
+		  }}>
+			<RouterProvider router={router} />
+		</ConfigProvider>
+	)
+	
+	
+	
 }
 
 export default App;

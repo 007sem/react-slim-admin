@@ -3,6 +3,8 @@ import Chart from "react-apexcharts";
 import icon_rise from "@/assets/svg/icon_rise.svg";
 import icon_down from "@/assets/svg/icon_down.svg";
 
+import { useCommonStore } from "@/hooks/useCommonStore";
+
 import type { Props as ApexChartProps } from "react-apexcharts";
 
 interface TotalCardProps {
@@ -61,7 +63,11 @@ interface SeriesType {
 }
 
 function SimpleLineCharts({ series }: { series: SeriesType[] }) {
+
+	const { themeStyle } = useCommonStore()
+
 	let options = {
+		colors: [themeStyle.second],
 		chart: {
 			type: "line",
 			width: 120,
@@ -109,6 +115,7 @@ function SimpleLineCharts({ series }: { series: SeriesType[] }) {
 	return (
 		<Chart
 			className="charts"
+			style={{color: "#181818"}}
 			options={options}
 			series={series}
 			type="line"
